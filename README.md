@@ -8,14 +8,6 @@ Documentação sobre como subir o Gitea no ambiente local, com o objetivo de rea
 docker-compose up -d
 ```
 
-```shell
-docker exec -it gitea-runner-01 act_runner register -c /runner/config.yaml
-```
-
-```shell
-docker-compose restart runner
-```
-
 ## Comando utilizado na execução do arquivo `docker-compose.yml` para finalizar o PostgreSQL e o Gitea.
 
 ```shell
