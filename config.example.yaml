@@ -1,0 +1,11 @@
+log:
+  level: info
+
+runner:
+  file: /runner/.runner
+  name: "RUNNER_01"
+  capacity: 1
+  labels:
+    - "docker"
+  url: "http://server:3000"
+  envs: {}
