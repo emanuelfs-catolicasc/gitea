@@ -45,6 +45,7 @@ services:
     restart: always
     networks:
       - gitea
+    privileged: true  # 🔑 Permite acesso ao Docker dentro do container
     volumes:
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -52,6 +53,7 @@ services:
       - server
     entrypoint: >
       sh -c "
+        apk add --no-cache docker-cli &&
         act_runner register --no-interactive --instance $GITEA_INSTANCE_URL --token $GITEA_RUNNER_REGISTRATION_TOKEN --name $GITEA_RUNNER_NAME --labels $GITEA_RUNNER_LABELS &&
         act_runner daemon
       "
