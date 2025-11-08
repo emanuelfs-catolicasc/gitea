@@ -2,7 +2,7 @@
 
 Documentação sobre como subir o Gitea no ambiente local, com o objetivo de realizar o desenvolvimento.
 
-## Comandos utilizados na execução do arquivo `docker-compose.yml` para iniciar o PostgreSQL, o Gitea e o runner.
+## Comando utilizado na execução do arquivo `docker-compose.yml` para iniciar o PostgreSQL, o Gitea e o runner.
 
 ```shell
 docker-compose up -d
