@@ -1,3 +1,6 @@
+/data
+/data_runner_build
+/data_runner_deploy
 /gitea
 /runner
 /postgres

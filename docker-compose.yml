@@ -36,20 +36,30 @@ services:
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
-  runner:
-    image: gitea/act_runner:latest-dind
-    container_name: gitea-runner-01
-    restart: always
-    networks:
-      - gitea
-    privileged: true
+  runner-build:
+    image: gitea/act_runner:latest
+    container_name: runner-build
+    restart: unless-stopped
+    environment:
+      - GITEA_INSTANCE_URL=$GITEA_INSTANCE_URL
+      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_BUILD_REGISTRATION_TOKEN
+      - GITEA_RUNNER_NAME=$GITEA_RUNNER_BUILD_NAME
+      - GITEA_RUNNER_LABELS=$GITEA_RUNNER_BUILD_LABELS
     volumes:
-      - ./runner:/runner
+      - ./data_runner_build:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      - server
-    entrypoint: >
-      sh -c "
-        act_runner register --no-interactive --instance $GITEA_INSTANCE_URL --token $GITEA_RUNNER_REGISTRATION_TOKEN --name $GITEA_RUNNER_NAME --labels $GITEA_RUNNER_LABELS &&
-        act_runner daemon
-      "
+    command: ["daemon"]
+
+  runner-deploy:
+    image: gitea/act_runner:latest
+    container_name: runner-deploy
+    restart: unless-stopped
+    environment:
+      - GITEA_INSTANCE_URL=$GITEA_INSTANCE_URL
+      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_DEPLOY_REGISTRATION_TOKEN
+      - GITEA_RUNNER_NAME=$GITEA_RUNNER_DEPLOY_NAME
+      - GITEA_RUNNER_LABELS=$GITEA_RUNNER_DEPLOY_LABELS
+    volumes:
+      - ./data_runner_deploy:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: ["daemon"]
