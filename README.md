@@ -2,6 +2,13 @@
 
 Documentação sobre como subir o Gitea no ambiente local, com o objetivo de realizar o desenvolvimento.
 
+## Comandos utilizados na criação das imagens Docker, que serão utilizadas no pipeline.
+
+```shell
+docker build -t custom-node-build:latest -f Dockerfile.node-build .
+docker build -t custom-docker-build:latest -f Dockerfile.docker-build .
+```
+
 ## Comando utilizado na execução do arquivo `docker-compose.yml` para iniciar o PostgreSQL, o Gitea e o runner.
 
 ```shell

@@ -41,10 +41,10 @@ services:
     container_name: runner-build
     restart: unless-stopped
     environment:
-      - GITEA_INSTANCE_URL=$GITEA_INSTANCE_URL
-      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_BUILD_REGISTRATION_TOKEN
-      - GITEA_RUNNER_NAME=$GITEA_RUNNER_BUILD_NAME
-      - GITEA_RUNNER_LABELS=$GITEA_RUNNER_BUILD_LABELS
+      - GITEA_INSTANCE_URL=${GITEA_INSTANCE_URL}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${GITEA_RUNNER_BUILD_REGISTRATION_TOKEN}
+      - GITEA_RUNNER_NAME=${GITEA_RUNNER_BUILD_NAME}
+      - GITEA_RUNNER_LABELS=${GITEA_RUNNER_BUILD_LABELS}
     volumes:
       - ./data_runner_build:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -55,10 +55,10 @@ services:
     container_name: runner-deploy
     restart: unless-stopped
     environment:
-      - GITEA_INSTANCE_URL=$GITEA_INSTANCE_URL
-      - GITEA_RUNNER_REGISTRATION_TOKEN=$GITEA_RUNNER_DEPLOY_REGISTRATION_TOKEN
-      - GITEA_RUNNER_NAME=$GITEA_RUNNER_DEPLOY_NAME
-      - GITEA_RUNNER_LABELS=$GITEA_RUNNER_DEPLOY_LABELS
+      - GITEA_INSTANCE_URL=${GITEA_INSTANCE_URL}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${GITEA_RUNNER_DEPLOY_REGISTRATION_TOKEN}
+      - GITEA_RUNNER_NAME=${GITEA_RUNNER_DEPLOY_NAME}
+      - GITEA_RUNNER_LABELS=${GITEA_RUNNER_DEPLOY_LABELS}
     volumes:
       - ./data_runner_deploy:/data
       - /var/run/docker.sock:/var/run/docker.sock
